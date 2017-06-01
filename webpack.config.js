@@ -1,11 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './index.html',
   filename: 'index.html',
   inject: 'body'
-});
-const config = {
+})
+module.exports = {
   entry: './index.js',
   output: {
     filename: 'bundle.js'
@@ -25,15 +24,4 @@ const config = {
     ]
  },
  plugins: [HtmlWebpackPluginConfig]
-};
-
-if("production") {
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env' = {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  )
 }
